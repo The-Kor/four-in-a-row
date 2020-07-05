@@ -1,0 +1,56 @@
+==================
+=  Review:  =
+==================
+A simple Four In A Row game implemented in Python using Tkinter lib.
+The game can be played against the computer using "AI" class which is used to calculate a score to every possible move
+by the computer. The score calculation simulates the game in all possible scenarios (within a certain depth) and
+selects the move which that gives the "AI" the best odds to win.
+
+==================
+=  Description:  =
+==================
+
+"AI" -
+The AI class is using basic recursion process to calculate the best possible move to the player that is
+given to the AI instance.
+The "AI" has a function called calculate_moves_score which is simulating all of the combinations of all moves
+by the given player and it's enemy. Every move is being applied on a copy of the game instance to avoid
+changing the given game instance. After every move the function will check what did the move cause to the state
+of the game, The result of the move will be considered in the move's score.
+By calling find_legal_move the AI will calculate the scores for all of the possible moves, After the calculation
+is done, the function will return the the move with the best score (random move if more then 1 has the best score).
+The default depth value is 2, by increasing this value you might get more accurate score but the calculation
+run time will grow exponential and might be irrelevant to a simple four in a game four.
+By decreasing the depth value (to 1) you will get less accurate result but much faster run time of the calculation.
+
+GAME - 
+The Game class defines a classic four in a row game with 2 players (1 and 2).
+The class has methods that are used to control the state of the game and the operations that
+a player can perform in a game.
+There is a method that creates a game board, and after creating the board there are methods that are 
+responsible for getting the exact location to locate a disk according to the user's  choice and making the move:
+inserting the disk to the right location.
+on every turn the board is updated and after every turn, I defined methods that check if there is a horizontal,
+vertical or diagonal winning sequence. if there is such a sequence, these is a method that returns the winning
+player's number (1 or 2).
+the Game class also contains "get" methods that return the value in a certain coordinate on the board and the player
+who is currently playing on every turn.
+
+GUI - 
+This class is responsible of the graphic representation of the game to the user.
+The user plays the game using the gui.
+I created a parent tkinter window holding different frames for different parts of the game - the board,
+the buttons and the information regarding the current game (which player is currently playing).
+the Gui contains methods that activate the game.
+at the start the user needs to choose the two player's types: ai or human.
+after doing so, these are methods that create a new Game instance and presents the user the parent that as defined.
+if the user chose AI as the player type, the gui will call functions from the class AI to make the moves that will be 
+presented on the board for the user to see.
+if the user chose Human as the player type, by pressing the buttons representing each column on the board,
+the user chooses a spot and the gui locates the disk by calling functions from the class Game.
+on every turn the gui presents the current player.
+the gui uses functions from the class Game to check if there is a winner. if so, it presents a winning massage
+and asks the user if they want to play again.
+by pressing the button play again - the gui initializes a new game, by pressing the button exit, it stops the game 
+and closes the window.
+
